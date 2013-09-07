@@ -1,7 +1,7 @@
 
 # level-exists
 
-Check if a datum exists without reading it's value.
+Check if a datum exists without reading its value.
 
 ## Example
 

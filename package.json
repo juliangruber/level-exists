@@ -1,6 +1,6 @@
 {
   "name" : "level-exists",
-  "description" : "Check if a datum exists without reading it's value.",
+  "description" : "Check if a datum exists without reading its value.",
   "version" : "0.0.0",
   "repository" : {
     "type" : "git",
