@@ -1,0 +1,25 @@
+{
+  "name" : "level-exists",
+  "description" : "Check if a datum exists without reading it's value.",
+  "version" : "0.0.0",
+  "repository" : {
+    "type" : "git",
+    "url" : "git://github.com/juliangruber/level-exists.git"
+  },
+  "homepage": "https://github.com/juliangruber/level-exists",
+  "main" : "index.js",
+  "scripts" : {
+    "test" : "tape test.js"
+  },
+  "dependencies" : {},
+  "devDependencies" : {
+    "tape" : "*"
+  },
+  "keywords": ["level","exists","leveldb"],
+  "author": {
+    "name": "Julian Gruber",
+    "email": "mail@juliangruber.com",
+    "url": "http://juliangruber.com"
+  },
+  "license": "MIT"
+}
