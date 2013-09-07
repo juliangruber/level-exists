@@ -3,6 +3,8 @@
 
 Check if a datum exists without reading its value.
 
+[![build status](https://secure.travis-ci.org/juliangruber/level-exists.png)](http://travis-ci.org/juliangruber/level-exists)
+
 ## Example
 
 ```js
