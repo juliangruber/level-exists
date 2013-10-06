@@ -21,6 +21,10 @@ exists.install = install;
  */
 
 function exists(db, key, cb) {
+  if (typeof db == 'undefined') throw new Error('database required');
+  if (typeof key == 'undefined') throw new Error('key required');
+  if (typeof cb == 'undefined') throw new Error('callback required');
+
   cb = once(cb);
 
   db.createKeyStream({
