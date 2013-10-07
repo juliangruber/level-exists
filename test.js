@@ -35,3 +35,16 @@ test('args defined', function(t) {
   t.end();
 });
 
+test('#2 Wrong results when using UUIDs as keys', function(t) {
+  t.plan(3);
+
+  db.put('e1477610-2e38-11e3-b9c6-a5956e82b950', 'foo', function(err) {
+    t.error(err);
+
+    db.exists('e1481250-2e38-11e3-b9c6-a5956e82b950', function(err, yes) {
+      t.error(err);
+      t.notOk(yes);
+    });
+  });
+});
+
