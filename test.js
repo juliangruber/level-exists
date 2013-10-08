@@ -1,6 +1,8 @@
 var exists = require('./');
 var level = require('level');
 var test = require('tape');
+var uuid = require('node-uuid');
+
 var noop = function(){};
 
 var db = level(__dirname + '/db');
@@ -38,10 +40,16 @@ test('args defined', function(t) {
 test('#2 Wrong results when using UUIDs as keys', function(t) {
   t.plan(3);
 
-  db.put('e1477610-2e38-11e3-b9c6-a5956e82b950', 'foo', function(err) {
+  var key = uuid.v1();
+
+  db.put(key, 'foo', function(err) {
     t.error(err);
 
-    db.exists('e1481250-2e38-11e3-b9c6-a5956e82b950', function(err, yes) {
+    db.exists(key, function(err, yes) {
+
+      console.log(err);
+      console.log(yes);
+
       t.error(err);
       t.notOk(yes);
     });
