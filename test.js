@@ -1,9 +1,20 @@
 var exists = require('./');
 var level = require('level');
+var sublevel = require('level-sublevel');
 var test = require('tape');
+var uuid = require('node-uuid');
+
 var noop = function(){};
 
-var db = level(__dirname + '/db');
+// comment out one of the next lines to see the problem described at:
+// https://github.com/juliangruber/level-exists/issues/2
+
+// if we use the normal level db nstance, then test no 14 will pass
+// var db = level(__dirname + '/db');
+
+// if we use this sublevel instance, then test no 14 will fail
+var db = sublevel(level(__dirname + '/db')).sublevel('testdata');
+
 exists.install(db);
 
 test('exists', function(t) {
@@ -36,14 +47,26 @@ test('args defined', function(t) {
 });
 
 test('#2 Wrong results when using UUIDs as keys', function(t) {
-  t.plan(3);
+  t.plan(5);
 
-  db.put('e1477610-2e38-11e3-b9c6-a5956e82b950', 'foo', function(err) {
+  var key1 = uuid.v1();
+
+  db.put(key1, 'foo', function(err) {
     t.error(err);
 
-    db.exists('e1481250-2e38-11e3-b9c6-a5956e82b950', function(err, yes) {
+    db.exists(key1, function(err, yes) {
+
       t.error(err);
-      t.notOk(yes);
+      t.ok(yes);
+
+      var key2 = uuid.v1();
+
+      db.exists(key2, function(err2, yes2) {
+
+        t.error(err2);
+        t.notOk(yes2);
+
+      });
     });
   });
 });
