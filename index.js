@@ -28,8 +28,8 @@ function exists(db, key, cb) {
   cb = once(cb);
 
   db.createKeyStream({
-    gte: key,
-    lte: key
+    start: key,
+    end: key
   })
   .on('data', function() {
     cb(null, true);
