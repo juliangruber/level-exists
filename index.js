@@ -27,12 +27,12 @@ function exists(db, key, cb) {
 
   cb = once(cb);
 
-  db.createKeyStream({
+  db.createValueStream({
     start: key,
     end: key
   })
-  .on('data', function() {
-    cb(null, true);
+  .on('data', function(value) {
+    cb(null, true, value);
   })
   .on('error', function() {
     cb(err);

@@ -16,9 +16,9 @@
   },
   "devDependencies": {
     "tape": "~1.1.0",
-    "level": "~0.17.0",
+    "level": "~0.18.0",
     "ben": "0.0.0",
-    "level-sublevel": "~5.1.1"
+    "level-sublevel": "*"
   },
   "keywords": [
     "level",
