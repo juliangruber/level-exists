@@ -17,7 +17,7 @@ exists.install(db);
 db.del('foo', function(err) {
   if (err) throw err;
 
-  db.exists('foo', function(err, yes, value) {
+  db.exists('foo', function(err, yes) {
     if (err) throw err;
     console.log('foo exists? %s', yes);
     // foo exists? false
@@ -25,7 +25,7 @@ db.del('foo', function(err) {
     db.put('foo', 'bar', function(err) {
       if (err) throw err;
 
-      exists(db, 'foo', function(err, yes, value) {
+      exists(db, 'foo', function(err, yes) {
         if (err) throw err;
         console.log('foo exists? %s', yes);
         // foo exists? true
@@ -39,7 +39,7 @@ db.del('foo', function(err) {
 
 ### exists(db, key, cb)
 
-Check if there's a datum in `db` with `key` and call `cb` with `(err, exists, value)`.
+Check if there's a datum in `db` with `key` and call `cb` with `(err, exists)`.
 
 ### exists.install(db)
 ### db#exists(key, cb)
