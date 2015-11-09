@@ -3,6 +3,7 @@ var level = require('level');
 var test = require('tape');
 var noop = function(){};
 var sublevel = require('level-sublevel');
+var Stream = require('stream');
 
 var db = level(__dirname + '/db');
 exists.install(db);
@@ -74,3 +75,18 @@ test('sublevel', function(t) {
   });
 });
 
+test('key stream error', function(t) {
+  var db = { createKeyStream: function(){
+    var s = new Stream;
+    process.nextTick(function() {
+      s.emit('error', new Error('nope'));
+    });
+    return s;
+  }};
+
+  exists(db, 'goo', function(err){
+    t.ok(err);
+    t.equal(err.message, 'nope');
+    t.end();
+  });
+});
