@@ -34,7 +34,7 @@ function exists(db, key, cb) {
   .on('data', function() {
     cb(null, true);
   })
-  .on('error', function() {
+  .on('error', function(err) {
     cb(err);
   })
   .on('end', function() {
